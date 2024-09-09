@@ -1,0 +1,123 @@
+#container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eee;
+  padding: 50px;
+  display: flex;
+  flex-flow: column;
+  gap: 30px;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  height: 500px;
+  width: 650px;
+  border: 3px solid #482cb8;
+  overflow-y: scroll;
+}
+
+#listHeader {
+  display: flex;
+  align-items: start;
+  border: 3px solid #482cb8;
+  width: 650px;
+  height: 170px;
+  justify-content: center;
+  gap: 30px;
+}
+
+#listHeader > div {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+  margin: 10px;
+  color: #482cb8;
+}
+
+#listHeader input {
+  background-color: #eee;
+  font-size: 1.2em;
+  border-radius: 0;
+  border: none;
+  border-bottom: 3px solid #482cb8;
+  color: #482cb8;
+}
+
+#listHeader input:focus {
+  outline: 0;
+}
+
+#listHeader button {
+  font-size: 1em;
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  background-color: #eee;
+  border-radius: 50%;
+  outline: 0;
+  border: 3px solid #482cb8;
+  color: #482cb8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#listHeader button:hover {
+  background-color: #482cb8;
+  color: #eee;
+}
+
+#listHeader button:active {
+  scale: 0.9;
+}
+
+#headerContent {
+  display: flex;
+  gap: 30px;
+}
+
+#headerContent input {
+  background-color: #eee;
+  width: 300px;
+  height: 50px;
+  font-size: 1.5em;
+  border-radius: 0;
+  border: none;
+  border-bottom: 3px solid #482cb8;
+}
+
+#headerContent input:focus {
+  outline: none;
+}
+
+#headerContent button {
+  background-color: transparent;
+  border: none;
+  font-size: 2em;
+}
+
+#copy {
+  width: 200px;
+  height: 50px;
+  background-color: transparent;
+  border: 3px solid #482cb8;
+  font-size: 1.5em;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #482cb8;
+}
+
+#copy:hover {
+  background-color: #482cb8;
+  color: #fff;
+}
+
+#copy:active {
+  scale: 0.9;
+}
