@@ -1,8 +1,9 @@
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer";
 
-(async () => {
+export default class Bot{
+async wppSender(arrayMentions: string[]): Promise<void> {
   // Função para criar um atraso
-  function wait(ms) {
+  function wait(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
@@ -31,7 +32,7 @@ const puppeteer = require("puppeteer");
   });
 
   // Simular a digitação de uma mensagem
-  const mentions = [" @Tuzada 👻🪓", "@Yuking 🔒🔓"];
+  const mentions = arrayMentions;
   const [input] = await page.$$('div[contenteditable="true"][tabindex="10"]'); // Encontra o campo de entrada
   if (input) {
     await input.focus();
@@ -67,4 +68,6 @@ const puppeteer = require("puppeteer");
 
   // Fechar o navegador após o envio
   //await browser.close();
-})();
+};
+
+}

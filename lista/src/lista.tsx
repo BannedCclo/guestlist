@@ -1,6 +1,7 @@
 import "./lista.css"
 import Guest from "./compontents/guest"
 import {useRef, useEffect, useState} from 'react'
+import api from './services/api'
 
 function Lista () {
 
@@ -20,6 +21,8 @@ function Lista () {
     const copyBtn = useRef<HTMLButtonElement>(null)
     const addBtn = useRef<HTMLButtonElement>(null)
 
+    
+
     function updateList () {
         if (search.current != undefined) {
             search.current.value = ""
@@ -28,6 +31,7 @@ function Lista () {
     }
 
     function handleSearch () {
+        
         const searchArr = getGuestsLocalStorage()
         let searchContent = ""
         if (search.current != undefined) {
@@ -40,14 +44,26 @@ function Lista () {
 
     }
 
+    function handleSender() {
+        let sendReady: string[] = []
+        const sendArr = getGuestsLocalStorage()
+        sendArr.forEach((guest: {confirmed: boolean, wppTag: string})=>{
+               if (!guest.confirmed) {
+                sendReady.push("@" + guest.wppTag.slice(0, 5) + " ")
+                console.log(sendReady)
+            }
+        })
+        api.post('/bot', {
+            "arrayMentions":sendReady
+        }).then(()=>{
+            console.log(sendReady)
+        })
+    }
+
     function handleCopy () {
         let copyText = ""
         const copyArr = getGuestsLocalStorage()
-        copyArr.forEach((guest: {confirmed: boolean, wppTag: string})=>{
-            if (!guest.confirmed) {
-                copyText = copyText + "@" + guest.wppTag + " "
-            }
-        })
+        
         navigator.clipboard.writeText(copyText).then(() => {
             if(copyBtn.current != undefined)
             {copyBtn.current.innerHTML = '<i class="fa-solid fa-check"></i>';}
@@ -60,11 +76,15 @@ function Lista () {
     }
 
     function addGuest() {
+        let nextId = 0
         const addArr = getGuestsLocalStorage()
         console.log(addArr)
         let nextName = ""
         let nextTag = ""
-        const nextId = addArr[addArr.length-1].id + 1
+        if(addArr.length>0) {
+            nextId = addArr[addArr.length-1].id + 1
+        }
+        
         if (addName.current!= undefined) {   
             if (addName.current.value != "" && addName.current.value != null && addName.current.value != " ") {
             nextName = addName.current.value
@@ -91,20 +111,18 @@ function Lista () {
         setTimeout(()=>{
             if(addBtn.current != undefined)
                 {
-                    console.log(addBtn.current.innerHTML)
+                    
                     addBtn.current.innerHTML = '<i class="fa-solid fa-plus"></i>';
-                    console.log(addBtn.current.innerHTML)}
+                   }
         }, 1000) 
 
         addArr.push({id: nextId, name: nextName, confirmed: false, wppTag: nextTag})
         localStorage.setItem("guests", JSON.stringify(addArr));
         updateList()
-        console.log(getGuestsLocalStorage())
     }
 
     useEffect(() => {
         updateList()
-        console.log(currentArr)
     }, [])
 
     return (
@@ -126,8 +144,8 @@ function Lista () {
                     <Guest label={guest.name} confirmed={guest.confirmed} storageId={guest.id} updateList={updateList}/>
                 ))}
             </main>
-            <button id="copy" onMouseUp={handleCopy} ref={copyBtn}>
-                Copiar lista
+            <button id="copy" onClick={handleSender} ref={copyBtn}>
+                Enviar lista
             </button>
         </div>
     )

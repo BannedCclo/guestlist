@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",          // Ou a versão desejada do ECMAScript
+      "module": "NodeNext",        // Define o sistema de módulos ECMAScript
+      "moduleResolution": "NodeNext", // Configura a resolução de módulos
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+  }
