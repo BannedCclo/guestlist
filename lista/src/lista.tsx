@@ -65,13 +65,24 @@ function Lista () {
         let nextName = ""
         let nextTag = ""
         const nextId = addArr[addArr.length-1].id + 1
-        if (addName.current!= undefined) {      
+        if (addName.current!= undefined) {   
+            if (addName.current.value != "" && addName.current.value != null && addName.current.value != " ") {
             nextName = addName.current.value
             addName.current.value = ""
+            } else {
+                alert("Preencha todos os campos!")
+                return
+            }
+            
         }
         if (addTag.current!= undefined) {
-            nextTag = addTag.current.value
-            addTag.current.value = ""
+            if (addTag.current.value != "" && addTag.current.value != null && addTag.current.value != " ") {
+                nextTag = addTag.current.value
+                addTag.current.value = ""
+                } else {
+                    alert("Preencha todos os campos!")
+                    return
+                }
         }
 
         if(addBtn.current != undefined)
