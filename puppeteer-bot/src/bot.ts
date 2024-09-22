@@ -58,7 +58,7 @@ async wppSender(arrayMentions: string[]): Promise<void> {
 
     await page.type(
       'div[contenteditable="true"][tabindex="10"]',
-      "Só lembrando, quem não confirmou, confirma por favor! Tenho até o dia 28/09 pra fechar a lista de convidados!"
+      "Só lembrando, quem não confirmou, confirma por favor! Tenho até o dia 28/09 pra fechar a lista de convidados, e chamem namorados!"
     );
     //await page.type('div[contenteditable="true"][tabindex="10"]', message);
 
