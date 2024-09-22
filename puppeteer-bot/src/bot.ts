@@ -27,7 +27,7 @@ async wppSender(arrayMentions: string[]): Promise<void> {
 
   // Encontrar a conversa com a pessoa ou grupo desejado
   //const contactName = "18 do brabo 😈😈"; // Substitua pelo nome do contato ou grupo
-  const contactName = "Testes";
+  const contactName = "18 do brabo 😈😈";
   await page.click(`span[title='${contactName}']`);
 
   // Aguardar a abertura da conversa
